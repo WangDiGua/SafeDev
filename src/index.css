@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-mono: "ui-monospace", "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Custom minimal shadows for designer feel */
+  --shadow-sm: 0px 1px 2px rgba(0, 0, 0, 0.04), 0px 2px 4px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 2px 4px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0px 12px 24px -4px rgba(0, 0, 0, 0.06), 0px 8px 16px -8px rgba(0, 0, 0, 0.04);
+
+  /* iOS System Colors */
+  --color-ios-blue: #007AFF; 
+  --color-ios-gray: #8E8E93;
+  --color-ios-green: #34C759;
+  --color-ios-red: #FF3B30;
+  
+  /* Light Theme */
+  --color-ios-bg-light: #F2F2F7;
+  --color-ios-card-light: #FFFFFF;
+  --color-ios-text-light: #000000;
+  --color-ios-muted-light: #8E8E93;
+  --color-ios-border-light: rgba(60, 60, 67, 0.18);
+
+  /* Dark Theme */
+  --color-ios-bg-dark: #000000;
+  --color-ios-card-dark: #1C1C1E;
+  --color-ios-text-dark: #FFFFFF;
+  --color-ios-muted-dark: #EBEBF5;
+  --color-ios-border-dark: rgba(84, 84, 88, 0.65);
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply text-ios-text-light dark:text-ios-text-dark;
+  }
+  .text-gradient-blue {
+    @apply text-ios-blue;
+  }
+  .glass-panel {
+    @apply bg-white/40 dark:bg-[#0a0a0a]/40 backdrop-blur-3xl backdrop-saturate-[1.8] border border-white/40 dark:border-white/10;
+  }
+  .glass-card {
+    @apply bg-white dark:bg-[#1C1C1E] shadow-sm border-none;
+  }
+}
+
+@layer base {
+  html {
+    @apply transition-colors duration-300 antialiased font-sans scroll-smooth;
+  }
+  
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-ios-bg-light dark:bg-ios-bg-dark text-ios-text-light dark:text-ios-text-dark transition-colors duration-300;
+  }
+}
+
+@utility ios-glass {
+  @apply bg-white dark:bg-[#0a0a0a] border border-ios-border-light dark:border-ios-border-dark;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@utility ios-glass-heavy {
+  @apply bg-white dark:bg-[#0a0a0a] border border-ios-border-light dark:border-ios-border-dark;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@utility ios-card-glass {
+  @apply rounded-xl bg-white dark:bg-[#0a0a0a] border border-ios-border-light dark:border-ios-border-dark transition-all;
+  will-change: transform, opacity;
+}
+
+@utility ios-card {
+  @apply rounded-xl bg-white dark:bg-[#0a0a0a] border border-ios-border-light dark:border-ios-border-dark shadow-sm transition-all;
+}
+
+@utility ios-input {
+  @apply bg-white dark:bg-[#0a0a0a] border border-ios-border-light dark:border-ios-border-dark focus:border-ios-blue focus:ring-1 focus:ring-ios-blue rounded-lg px-4 py-2 text-sm font-medium outline-none transition-all placeholder:text-gray-400 dark:text-white shadow-sm;
+}
+
+@utility ios-button {
+  @apply rounded-lg px-4 py-2 text-sm font-semibold transition-all active:scale-[0.98] flex items-center justify-center gap-2 select-none active:brightness-90;
+}
+
+@utility ios-button-primary {
+  @apply bg-black dark:bg-white text-white dark:text-black shadow-sm hover:opacity-90;
+}
+
+@utility ios-button-secondary {
+  @apply bg-white dark:bg-[#0a0a0a] text-black dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 border border-ios-border-light dark:border-ios-border-dark;
+}
+
+.ios-tab-bar {
+  @apply fixed bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-1 p-2 rounded-[3.5rem] ios-glass border border-white/40 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] z-50 transition-all duration-500 hover:scale-[1.03] active:scale-[0.98];
+}
+
+.ios-tab-item {
+  @apply flex flex-col items-center justify-center w-16 h-14 rounded-[1.5rem] transition-all;
+}
+
+.ios-tab-item-active {
+  @apply bg-ios-blue text-white shadow-lg shadow-ios-blue/20 transition-all duration-300;
+}
+
+.ios-tab-item-inactive {
+  @apply text-ios-gray hover:text-ios-blue hover:bg-ios-blue/5;
+}
+
+/* Custom scrollbar for iOS feel */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300/50 dark:bg-gray-700/50 rounded-full hover:bg-gray-400 dark:hover:bg-gray-600 transition-colors;
+}
+
+

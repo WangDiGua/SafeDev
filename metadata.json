@@ -1,0 +1,6 @@
+{
+  "name": "SafeDev",
+  "description": "Local-first developer toolbox for secure JSON formatting, JWT decoding, crypto operations, and regex testing. Everything stays in your browser.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
